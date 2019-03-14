@@ -25,7 +25,7 @@ def execute_sql(sql, values=(), commit=False, single=False):
 
 @app.teardown_appcontext
 def  close_connection(exception):
-    cennection = getattr(g, '_connection', None)
+    cennection = getattr(g, "_connection", None)
     if connection is not None:
         connection.close()
 
