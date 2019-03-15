@@ -14,6 +14,7 @@
   <h2>Reviews</h2>
 
     {% for review in reviews %}
+
     <div class="box">
       <article class="media">
         <div class="media-left">
@@ -33,7 +34,9 @@
         </div>
       </article>
     </div>
+
     {% endfor %}
+
   <div class="columns">
     <div class="column">
       <a href="{{ url_for('review', employer_id=employer['id']) }}" class="button is-info is-pulled-right">Create Review</a>
