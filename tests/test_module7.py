@@ -21,6 +21,25 @@ def test_app_review_route_module7():
     result = [item for item in get_functions(app.review) if item.startswith('render_template:review.html:employer_id:employer_id')]
     assert len(result) == 1, 'Have you called the `render_template` function with the correct arguments.'
 
+    return_values = get_functions_returns(app.review)
+    employer = {
+        "value/args/args/s": "employer",
+        "value/args/func/id": "url_for",
+        "value/args/keywords/arg": "employer_id",
+        "value/args/keywords/value/id": "employer_id",
+        "value/func/id": "redirect"
+    }
+
+    render = {
+        "value/args/s": "review.html",
+        "value/func/id": "render_template",
+        "value/keywords/arg": "employer_id",
+        "value/keywords/value/id": "employer_id"
+    }
+
+    assert render in return_values, 'Did you return the `render_template` call?'
+    assert employer in return_values, 'Did you return a call to `redirect` and `url_for`?'
+
 @pytest.mark.test_app_review_post_request_check_module7
 def test_app_review_post_request_check_module7():
     assert 'review' in dir(app), 'Have you created the `review` function?'
